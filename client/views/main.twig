@@ -1,0 +1,37 @@
+{% extends 'layout/app.twig' %}
+{% block title %}
+    Вход
+{% endblock %}
+{% block body %}
+<div class="wrapper">
+    <form method="GET" class="connect" action="/main/chat">
+        <h1>Подключитесь к комнате</h1>
+        <input type="hidden" name="type_connection" value="connection_room">
+        <div class="input__controlls">
+            <label class="name__input">Имя</label>
+            <input type="text" name="name" placeholder="введите имя">
+        </div>
+        <div class="input__controlls">
+            <label class="name__input">Комната</label>
+            <input type="text" name="room" placeholder="введите комнату">
+        </div>
+        <div class="check__password">
+            <input type="checkbox" onclick="addPassword()">
+            <label>У этой комнаты есть пароль?</label>
+        </div>
+        <div class="input__controlls__password" id="add__password"></div>
+        {% if error %}
+            <div class="alert__error">
+                <p>{{ error }}</p>
+            </div>
+        {% endif %}
+        <div class="buttons__controlls">
+            <button>ВОЙТИ</button>
+            <a href="/store">Создать другую</a>
+        </div>
+    </form>
+</div>
+{% endblock %}
+{% block scripts %}
+<script src="../../assets/js/script.js"></script>
+{% endblock %}

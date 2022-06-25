@@ -1,0 +1,298 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #BBDEFF;
+    font-family: 'Zen Kaku Gothic Antique', sans-serif;
+}
+
+.wrapper {
+    width: 900px;
+    height: 20px;
+}
+
+/* border-radius: 15px; */
+.input__controlls input,
+.input__controlls__password input,
+.messages,
+.window,
+.message,
+.window__online,
+.exit {
+    border-radius: 15px;
+}
+
+.connect {
+    margin-top: 109px;
+    width: 700px;
+}
+
+.connect h1 {
+    font-size: 48px;
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+/* Выравнивание по центру объекта */
+.window, .input__controlls,
+.check__password,
+.input__controlls__password,
+.wrapper,
+.exit,
+.alert__error {
+    margin: 0 auto;
+}
+
+/* display: flex; */
+
+.input__controlls,
+.check__password,
+.input__controlls__password,
+.buttons__controlls,
+.windows__messages__online {
+    display: flex;
+}
+
+.input__controlls, .check__password, .input__controlls__password,
+.alert__error {
+    margin-top: 26px;
+    width: 545px;
+}
+
+.name__input {
+    font-weight: lighter;
+    font-size: 26px;
+}
+
+.password__input {
+    font-weight: lighter;
+    font-size: 26px;
+}
+
+.input__controlls input, .input__controlls__password input {
+    background-color: #647DFF;
+    border: none;
+    padding: 25px 35px;
+    width: 330px;
+    outline:none;
+    margin-left: auto;
+    font-size: 20px;
+    color: white;
+}
+
+.check__password input{
+    width: 19px;
+    height: 19px;
+    margin-top: 6px;
+    margin-right: 7px;
+}
+
+.check__password label {
+    font-size: 20px;
+}
+
+.buttons__controlls button {
+    font-weight: 900;
+    color: white;
+    border: none;
+    border-radius: 33px;
+    background-color: #4656AA;
+    padding: 12px 49px;
+    font-size: 20px;
+    cursor: pointer;
+    margin-right: 48px;
+}
+
+.buttons__controlls {
+    width: 369px;
+    float: right;
+    margin-top: 20px;
+    margin-right: 72px;
+}
+
+.buttons__controlls a {
+    font-size: 16px;
+    font-weight: bold;
+    color: #4A4343;
+    letter-spacing: 1px;
+}
+
+.window {
+    margin-top: 70px;
+    width: 811px;
+    background-color: white;
+    padding: 8px;
+}
+
+.input__exit img {
+    width: 15px;
+    cursor: pointer;
+}
+
+.messages {
+    width: 628px;
+    background-color: #E3E3E3;
+    height: 506px;
+    overflow: auto;
+}
+
+.messages::-webkit-scrollbar,
+.window__online::-webkit-scrollbar {
+    width: 0;
+}
+
+.message {
+    padding: 5px 8px 17px 8px;;
+    background-color: #87B0FF;
+    font-size: 15px;
+    font-weight: lighter;
+    color: white;
+    display: -webkit-inline-box;
+    display: block;
+    margin: 8px;
+}
+
+.message span{
+    font-size: 13px;
+    color: #6e6e6e;
+    letter-spacing: 2px;
+    font-weight: lighter;
+}
+
+.user {
+    float: right;
+    background-color: #787878;
+    max-width: 50%;
+    margin-left: 50%;
+}
+
+.user span {
+    color: #87B0FF;
+}
+
+.users {
+    float: left;
+    max-width: 50%;
+    margin-right: 50%;
+}
+
+.send-message input{
+    border: none;
+    border-radius: 15px;
+    padding: 17px 0 17px 14px;
+    background-color: #E3E3E3;
+    width: 461px;
+    outline:none;
+}
+
+.send-message {
+    margin-top: 8px;
+}
+
+.send-message button {
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 500;
+    color: white;
+    border: none;
+    border-radius: 25.5px;
+    background-color: #4656AA;
+    padding: 17px 29px 16px 29px;
+}
+
+.window__online {
+    margin-left: 8px;
+    width: 159px;
+    padding: 8px;
+    height: 549px;
+    background-color: #e3e3e3;
+    overflow: auto;
+}
+
+.window__online h1 {
+    font-size: 18px;
+}
+
+ul li{
+    list-style: none;
+    font-size: 14px;
+}
+
+.window__exit {
+    width: 100%;
+    position: absolute;
+    height: 100%;
+    top: 0;
+    background-color: #6e6e6e;
+    display: none;
+    opacity: 90%;
+}
+
+.exit {
+    width: 362px;
+    padding: 41px 39px 27px 39px;
+    background-color: white;
+    font-style: normal;
+    margin-top: 272px;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 24px;
+    letter-spacing: 3px;
+    text-align: center;
+    color: black;
+}
+
+.links__controll {
+    margin-top: 60px;
+    width: 362px;
+    height: 53px;
+}
+
+.links__controll a {
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 24px;
+    padding: 14px 43px;
+    background-color: red;
+    border-radius: 15px;
+    color: white;
+    cursor: pointer;
+}
+#yes {
+    float: left;
+}
+
+#no {
+    float: right;
+    background-color: #6e6e6e;
+}
+
+.active {
+    display: block;
+}
+
+
+.send-message input::-webkit-input-placeholder {
+    font-size: 14px;
+    font-weight: lighter;
+}
+
+.alert__error {
+    background-color: #f52a2a;
+    padding: 20px;
+    border-radius: 21px;
+}
+
+.alert__error p {
+    color: wheat;
+    font-size: 20px;
+}
+
+.input__controlls input::-webkit-input-placeholder,
+.input__controlls__password input::-webkit-input-placeholder { color: white; font-size: 20px; font-weight: lighter; opacity: 90%; }
+.input__controlls input::-moz-placeholder,
+.input__controlls__password input::-moz-placeholder{ color: white; font-size: 20px; font-weight: 100; font-weight: lighter; opacity: 90%; }

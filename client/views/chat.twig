@@ -1,0 +1,98 @@
+{% extends 'layout/app.twig' %}
+{% block title %}
+    Комната "Фрикадельки"
+{% endblock %}
+{% block body %}
+    <div class="window__exit">
+        <div class="exit">
+            <p>Вы хотите выйти?</p>
+            <div class="links__controll">
+                <a href="/" id="yes" >Да</a>
+                <a id="no" onclick="exitChatNo()">Нет</a>
+            </div>
+        </div>
+    </div>
+    <div class="window">
+        <div class="input__exit">
+            <img src="../../assets/img/exit.png" onclick="exitChat()" alt="exit chat">
+        </div>
+        <div class="windows__messages__online">
+            <div class="windows__messages">
+                <div class="messages" id="messages">
+                    <div class="message user">
+                        <span>Вы</span>
+                        <p>Привет, мир и кукушка! </p>
+                    </div>
+                </div>
+                <div class="send-message">
+                    <input type="text" id="message" placeholder="введите сообщение">
+                    <button type="submit" onclick="sendMessage()">ОТПРАВИТЬ</button>
+                </div>
+            </div>
+            <div class="window__online">
+                <h1>В сети:</h1>
+                <ul id="users">
+                </ul>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+{% block scripts %}
+    <script src="../../assets/js/script.js"></script>
+    <script>
+        let socket = new WebSocket("ws://127.0.0.1:8777");
+
+        socket.onopen = function(e) {
+            socket.send('{"message": "new room", "value": "{{ room }}", "user": "{{ name }}"}');
+            console.log("Соединение установлено!");
+        };
+
+        socket.onmessage = function(event) {
+            var json = JSON.parse(event.data);
+            var messages = document.getElementById("messages");
+
+            if(json.message == 'connection') {
+                const deleteElement = document.getElementById('users');
+                deleteElement.innerHTML = '';
+
+                json.users.map(function (item) {
+                   var users = document.getElementById('users');
+                   let liFirst = document.createElement('li');
+                   liFirst.innerHTML = "<li>"+item+"</li>";
+                   users.prepend(liFirst);
+                });
+
+            }
+            else if(json.message == 'message') {
+                var message = '' +
+                    '<div class="message '+json.status+'">'+
+                    '<span>'+json.user+'</span>'+
+                    '<p>'+json.value+'</p>\n' +
+                    '</div>';
+
+                messages.insertAdjacentHTML('beforeend', message);
+            }
+        };
+
+        socket.onclose = function(event) {
+            if (event.wasClean) {
+                alert(`[close] Соединение закрыто чисто, код=${event.code} причина=${event.reason}`);
+            } else {
+                // например, сервер убил процесс или сеть недоступна
+                // обычно в этом случае event.code 1006
+                alert('[close] Соединение прервано');
+            }
+        };
+
+        socket.onerror = function(error) {
+            alert(`[error] ${error.message}`);
+        };
+
+        function sendMessage() {
+            var message = document.getElementById('message').value;
+            socket.send('{"message": "new message", "value": "' + message + '"}');
+            document.getElementById('message').value = "";
+        }
+    </script>
+{% endblock %}
