@@ -23,13 +23,7 @@ $app->get('/main/chat', function (Request $request, Response $response, array $a
     $array = $request->getQueryParams(); // Данные, которые приходят с запроса
     $result = $room->connection($array);
     if(isset($result['type']) == 'connection_room' && isset($result['error'])) {
-//        var_dump($result);
-//        die();
         $body = $view->render('main.twig', ['error' => $result['error']]);
-    } elseif (isset($result['error']) && isset($result['type']) == 'store_room') {
-        var_dump($result);
-        die();
-//        $body = $view->render('store_room.twig', ['error' => $result]);
     } else {
         $body = $view->render('chat.twig', [ 'room' => $result['room'], 'name' => $result['name'] ]);
     }
@@ -37,18 +31,18 @@ $app->get('/main/chat', function (Request $request, Response $response, array $a
     return $response;
 });
 
-//$app->get('/store/chat', function (Request $request, Response $response, array $args) use ($view, $app) {
-//    $room = new RoomController(new Room());
-//    $array = $request->getQueryParams(); // Данные, которые приходят с запроса
-//    $result = $room->connection($array);
-//    if(empty($result['room'])) {
-//        $body = $view->render('store_room.twig', ['error' => $result]);
-//    } else {
-//        $body = $view->render('chat.twig', [ 'room' => $result['room'], 'name' => $result['name'] ]);
-//    }
-//    $response->getBody()->write($body);
-//    return $response;
-//});
+$app->get('/store/chat', function (Request $request, Response $response, array $args) use ($view, $app) {
+    $room = new RoomController(new Room());
+    $array = $request->getQueryParams(); // Данные, которые приходят с запроса
+    $result = $room->connection($array);
+    if(isset($result['type']) == 'store_room' && isset($result['error'])) {
+        $body = $view->render('store_room.twig', ['error' => $result['error']]);
+    }  else {
+        $body = $view->render('chat.twig', [ 'room' => $result['room'], 'name' => $result['name'] ]);
+    }
+    $response->getBody()->write($body);
+    return $response;
+});
 
 $app->get('/store', function (Request $request, Response $response, array $args) use ($view) {
     $body = $view->render('store_room.twig');

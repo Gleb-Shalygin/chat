@@ -13,6 +13,10 @@ class RoomController
         $this->db = $room;
     }
 
+    /** It`s method which connects with chat
+     * @param $data
+     * @return array|mixed|string|string[]|void
+     */
     public function connection($data)
     {
         switch ($data['type_connection']) {

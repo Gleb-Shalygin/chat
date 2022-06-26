@@ -53,16 +53,7 @@
             var messages = document.getElementById("messages");
 
             if(json.message == 'connection') {
-                const deleteElement = document.getElementById('users');
-                deleteElement.innerHTML = '';
-
-                json.users.map(function (item) {
-                   var users = document.getElementById('users');
-                   let liFirst = document.createElement('li');
-                   liFirst.innerHTML = "<li>"+item+"</li>";
-                   users.prepend(liFirst);
-                });
-
+                connectAndOutputUsers();
             }
             else if(json.message == 'message') {
                 var message = '' +
@@ -70,8 +61,11 @@
                     '<span>'+json.user+'</span>'+
                     '<p>'+json.value+'</p>\n' +
                     '</div>';
-
+                console.log(message);
                 messages.insertAdjacentHTML('beforeend', message);
+            } else if (json.message == 'onclose') {
+                alert(json.value);
+                document.location.replace("http://chat/");
             }
         };
 
@@ -89,10 +83,28 @@
             alert(`[error] ${error.message}`);
         };
 
+        /**
+         * This method send message
+         */
         function sendMessage() {
             var message = document.getElementById('message').value;
             socket.send('{"message": "new message", "value": "' + message + '"}');
             document.getElementById('message').value = "";
+        }
+
+        /**
+         * This method connections and output users
+         */
+        function connectAndOutputUsers() {
+            const deleteElement = document.getElementById('users');
+            deleteElement.innerHTML = '';
+
+            json.users.map(function (item) {
+                var users = document.getElementById('users');
+                let liFirst = document.createElement('li');
+                liFirst.innerHTML = "<li>"+item+"</li>";
+                users.prepend(liFirst);
+            });
         }
     </script>
 {% endblock %}
