@@ -21,7 +21,6 @@ class ComposerStaticInitd1cd8b0bff0fc0909c15b74d105d54e0
         'W' => 
         array (
             'Workerman\\' => 10,
-            'WebSocket\\' => 10,
         ),
         'T' => 
         array (
@@ -79,10 +78,6 @@ class ComposerStaticInitd1cd8b0bff0fc0909c15b74d105d54e0
         'Workerman\\' => 
         array (
             0 => __DIR__ . '/..' . '/workerman/workerman',
-        ),
-        'WebSocket\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/textalk/websocket/lib',
         ),
         'Twig\\' => 
         array (

@@ -11,13 +11,17 @@ $loader = new FilesystemLoader('client/views');
 $view = new Environment($loader);
 
 $app = AppFactory::create();
-
+/**
+ * This method outputs view for connect
+ */
 $app->get('/', function (Request $request, Response $response, array $args) use ($view) {
     $body = $view->render('main.twig');
     $response->getBody()->write($body);
     return $response;
 });
-
+/**
+ * This method connects to the chat
+ */
 $app->get('/main/chat', function (Request $request, Response $response, array $args) use ($view, $app) {
     $room = new RoomController(new Room());
     $array = $request->getQueryParams(); // Данные, которые приходят с запроса
@@ -30,7 +34,9 @@ $app->get('/main/chat', function (Request $request, Response $response, array $a
     $response->getBody()->write($body);
     return $response;
 });
-
+/**
+ * This method creates new room
+ */
 $app->get('/store/chat', function (Request $request, Response $response, array $args) use ($view, $app) {
     $room = new RoomController(new Room());
     $array = $request->getQueryParams(); // Данные, которые приходят с запроса
@@ -43,7 +49,9 @@ $app->get('/store/chat', function (Request $request, Response $response, array $
     $response->getBody()->write($body);
     return $response;
 });
-
+/**
+ * This route outputs a view with for create room
+ */
 $app->get('/store', function (Request $request, Response $response, array $args) use ($view) {
     $body = $view->render('store_room.twig');
     $response->getBody()->write($body);

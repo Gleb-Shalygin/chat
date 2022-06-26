@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services\Components;
+namespace App\Services;
 
 use App\Services\Interfaces\DBInterfaces;
 use Krugozor\Database\Mysql;
@@ -14,6 +14,10 @@ class DataBase implements DBInterfaces {
         $this->config = require_once "config/db.php";
     }
 
+    /** This method connects with database
+     * @return Mysql|void
+     * @throws \Krugozor\Database\MySqlException
+     */
     public function connection()
     {
         if($this->config["enable"]){

@@ -14,6 +14,10 @@ class Websocket implements MessageComponentInterface {
         $this->clients = new \SplObjectStorage;
     }
 
+    /** This method opens connect
+     * @param ConnectionInterface $conn
+     * @return void
+     */
     public function onOpen(ConnectionInterface $conn) {
         // Store the new connection to send messages to later
         $this->clients->attach($conn);
@@ -21,6 +25,11 @@ class Websocket implements MessageComponentInterface {
         echo "New connection! ({$conn->resourceId})\n";
     }
 
+    /** This method works with a new message
+     * @param ConnectionInterface $from
+     * @param $msg
+     * @return void
+     */
     public function onMessage(ConnectionInterface $from, $msg) {
         $msg = json_decode($msg);
         if($msg->message == 'new room'){
@@ -35,6 +44,10 @@ class Websocket implements MessageComponentInterface {
         }
     }
 
+    /** This method clears users and adds new
+     * @param ConnectionInterface $conn
+     * @return void
+     */
     public function onClose(ConnectionInterface $conn) {
         // The connection is closed, remove it, as we can no longer send it messages
         $this->clients->detach($conn);
@@ -44,11 +57,20 @@ class Websocket implements MessageComponentInterface {
         echo "Connection {$conn->resourceId} has disconnected\n";
     }
 
+    /** This method outputs errors and close connect
+     * @param ConnectionInterface $conn
+     * @param \Exception $e
+     * @return void
+     */
     public function onError(ConnectionInterface $conn, \Exception $e) {
         echo "An error has occurred: {$e->getMessage()}\n";
         $conn->close();
     }
 
+    /** This method adds new users
+     * @param $value
+     * @return void
+     */
     private function addUsersAndConnect($value) : void {
         $users = [];
         foreach ($this->users_name[$value] as $user) {
@@ -60,17 +82,36 @@ class Websocket implements MessageComponentInterface {
         }
     }
 
+    /** This method clears the array
+     * @param $room
+     * @param $conn
+     * @return void
+     */
     private function unsetArrays($room, $conn) : void {
         unset($this->rooms[$room][$conn->resourceId]);
         unset($this->users[$conn->resourceId]);
         unset($this->users_name[$room][$conn->resourceId]);
     }
 
+    /** This method sends message
+     * @param $message
+     * @param $client
+     * @param $msg
+     * @param $user
+     * @param $status
+     * @return void
+     */
     private function sendMessage($message, $client, $msg, $user, $status) : void {
         $message = ['message' => $message, 'value' => $msg->value, 'user' => $user, 'status' => $status];
         $client->send(json_encode($message));
     }
 
+    /** This method sends is new messages
+     * @param $room
+     * @param $from
+     * @param $msg
+     * @return void
+     */
     private function newMessages($room, $from, $msg) : void{
         foreach ($this->rooms[$room] as $client) {
             if($from !== $client) {
@@ -82,6 +123,11 @@ class Websocket implements MessageComponentInterface {
         }
     }
 
+    /** This method checkings existence users
+     * @param $msg
+     * @param $from
+     * @return void
+     */
     private function checkingForExistence($msg, $from) : void {
         $n = 0;
         foreach ($this->users_name[$msg->value] as $user) {

@@ -2,7 +2,7 @@
 
 namespace App\models;
 
-use App\Services\Components\DataBase;
+use App\Services\DataBase;
 use App\Services\Interfaces\RoomInterfaces;
 use Krugozor\Database\MySqlException;
 

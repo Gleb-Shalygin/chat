@@ -6,7 +6,7 @@ use App\models\Room;
 
 class RoomController
 {
-    private $db;
+    private $db; // Gets object with wich need to work
 
     public function __construct(Room $room)
     {

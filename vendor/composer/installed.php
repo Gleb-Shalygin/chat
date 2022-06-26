@@ -1,22 +1,22 @@
 <?php return array(
     'root' => array(
-        'pretty_version' => '1.0.0+no-version-set',
-        'version' => '1.0.0.0',
+        'pretty_version' => 'dev-main',
+        'version' => 'dev-main',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => NULL,
+        'reference' => '3e2c28a43c959fbf4dcf9b994cb680f56dfdaf6e',
         'name' => '__root__',
         'dev' => true,
     ),
     'versions' => array(
         '__root__' => array(
-            'pretty_version' => '1.0.0+no-version-set',
-            'version' => '1.0.0.0',
+            'pretty_version' => 'dev-main',
+            'version' => 'dev-main',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => NULL,
+            'reference' => '3e2c28a43c959fbf4dcf9b994cb680f56dfdaf6e',
             'dev_requirement' => false,
         ),
         'cboden/ratchet' => array(
@@ -290,15 +290,6 @@
             'install_path' => __DIR__ . '/../symfony/routing',
             'aliases' => array(),
             'reference' => '74c40c9fc334acc601a32fcf4274e74fb3bac11e',
-            'dev_requirement' => false,
-        ),
-        'textalk/websocket' => array(
-            'pretty_version' => '1.5.8',
-            'version' => '1.5.8.0',
-            'type' => 'library',
-            'install_path' => __DIR__ . '/../textalk/websocket',
-            'aliases' => array(),
-            'reference' => 'd05dbaa97500176447ffb1f1800573f23085ab13',
             'dev_requirement' => false,
         ),
         'twig/twig' => array(

@@ -19,10 +19,6 @@
         <div class="windows__messages__online">
             <div class="windows__messages">
                 <div class="messages" id="messages">
-                    <div class="message user">
-                        <span>Вы</span>
-                        <p>Привет, мир и кукушка! </p>
-                    </div>
                 </div>
                 <div class="send-message">
                     <input type="text" id="message" placeholder="введите сообщение">
@@ -42,18 +38,24 @@
     <script src="../../assets/js/script.js"></script>
     <script>
         let socket = new WebSocket("ws://127.0.0.1:8777");
-
+        /**
+         * This method opens connect
+         * @param e
+         */
         socket.onopen = function(e) {
             socket.send('{"message": "new room", "value": "{{ room }}", "user": "{{ name }}"}');
             console.log("Соединение установлено!");
         };
-
+        /**
+         * This method gets messages
+         * @param event
+         */
         socket.onmessage = function(event) {
             var json = JSON.parse(event.data);
             var messages = document.getElementById("messages");
 
             if(json.message == 'connection') {
-                connectAndOutputUsers();
+                connectAndOutputUsers(json);
             }
             else if(json.message == 'message') {
                 var message = '' +
@@ -68,7 +70,10 @@
                 document.location.replace("http://chat/");
             }
         };
-
+        /**
+         * This method closes connect
+         * @param event
+         */
         socket.onclose = function(event) {
             if (event.wasClean) {
                 alert(`[close] Соединение закрыто чисто, код=${event.code} причина=${event.reason}`);
@@ -78,7 +83,10 @@
                 alert('[close] Соединение прервано');
             }
         };
-
+        /**
+         * This method output errors
+         * @param error
+         */
         socket.onerror = function(error) {
             alert(`[error] ${error.message}`);
         };
@@ -95,7 +103,7 @@
         /**
          * This method connections and output users
          */
-        function connectAndOutputUsers() {
+        function connectAndOutputUsers(json) {
             const deleteElement = document.getElementById('users');
             deleteElement.innerHTML = '';
 
