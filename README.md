@@ -1,6 +1,6 @@
-#Чат на WebSockets
+# Чат на WebSockets
 ___
-##Описание
+## Описание
 
 Чат работает на WebSocket с использованием библиотеки Ratchet. 
 Имеется возможность создавать свою комнату и поставить на 
@@ -10,9 +10,10 @@ ___
 для роутинга библиотека Slim; в качестве шаблонизатора библиотека Twig;
 
 
-##Маршруты и обзор
+## Маршруты и обзор
 + https://chat/
   ![img.png](assets/readme/img/main.png)
+  
 + https://chat/store
   ![img_3.png](assets/readme/img/store.png)
 + https://chat/main/chat
